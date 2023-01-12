@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>@yield('judul') | Laravel 9 - AdminLTE 3</title>
+        <title>@yield('judul') | Voucher</title>
 
         <!-- Google Font: Source Sans Pro -->
         <link
@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte3/css/adminlte.min.css') }}">
+        @livewireStyles
         @yield('script_head')
     </head>
     <body class="hold-transition sidebar-mini">
@@ -42,5 +43,6 @@
         {{-- <script src="../../dist/js/demo.js"></script> --}}
 
         @yield('script_footer')
+        @livewireScripts
     </body>
 </html>
