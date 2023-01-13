@@ -55,7 +55,7 @@
                                             <td>{{ $tokos->notelpon }}</td>
                                             <td>{{ $tokos->Pic }}</td>
                                             <td>{{ $tokos->notelpon }}</td>
-
+                                            <td><a href="/dashboard/admin/tokoqrcode/{{ $tokos->kodetoko }}">download QRcode</a> </td>
                                             <td>
                                                 <button type="button" class="btn btn-info my-2" data-toggle="modal" data-target="#modaledit" wire:click="edits({{$tokos->id}})">
                                                     Edit

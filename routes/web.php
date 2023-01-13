@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TokoController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,17 +22,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+
+Route::get('/claimvoucher/{toko}',[CustomerController::class, 'show'])->name('customer');
+Route::post('/claimcustomer',[CustomerController::class, 'store'])->name('claimcustomer');
+
+Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/tokoqrcode/{param}',[TokoController::class, 'show'])->name('tokoshow');
+    Route::get('/toko',[TokoController::class, 'index'])->name('toko');
+    Route::get('/customerlist',[CustomerController::class, 'index'])->name('customerlist');
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [HomeController::class, 'profile'])->name('profile');
         Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
-        Route::get('/toko',[TokoController::class, 'index'])->name('toko');
-
-
     });
 
     Route::controller(AkunController::class)

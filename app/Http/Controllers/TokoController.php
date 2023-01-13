@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Tokovoucher;
 
 class TokoController extends Controller
 {
@@ -38,7 +39,7 @@ class TokoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -47,9 +48,10 @@ class TokoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($param)
     {
-        //
+        $show= Tokovoucher::where('kodetoko', $param)->first();
+        return view('qrcode',['show' => $show]);
     }
 
     /**

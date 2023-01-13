@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+
+use App\Models\Tokovoucher;
 
 class CustomerController extends Controller
 {
@@ -13,7 +16,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+     return view('customerlist');
     }
 
     /**
@@ -34,7 +37,34 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'idtoko'    => 'required|string',
+            'nama'      => 'required',
+            'phone'     => 'required|numeric',
+            'email'     =>'required'
+        ]);
+
+        $post = Customer::create([
+            'nama'          => $request->nama,
+            'email'         => $request->email,
+            'notelpon'      => $request->phone,
+            'alamat'        => $request->alamat,
+            'toko_id'       => $request->idtoko,
+        ]);
+
+        if ($post) {
+            return view('suksesclaim')
+                ->with([
+                    'success' => 'New post has been created successfully'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Some problem occurred, please try again'
+                ]);
+        }
     }
 
     /**
@@ -43,9 +73,10 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($param)
     {
-        //
+        $toko = Tokovoucher::where('kodetoko',$param)->first();
+        return view('customerdaftar',['toko'=>$toko]);
     }
 
     /**

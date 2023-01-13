@@ -9,4 +9,9 @@ class Customer extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function toko()
+    {
+    	return $this->belongsTo('App\Models\Tokovoucher');
+    }
 }

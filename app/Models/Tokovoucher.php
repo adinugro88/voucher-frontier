@@ -9,4 +9,10 @@ class Tokovoucher extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    
+    public function customer()
+    {
+    	return $this->hasOne('App\Models\Pengguna');
+    }
 }
