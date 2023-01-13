@@ -31,8 +31,7 @@
                                     <thead>
                                         <tr>
                                             <th>Asal Toko </th>
-                                            <th>nama</th>
-
+                                            <th>Customer</th>
                                             <th>alamat</th>
                                             <th>telepon toko</th>
                                             <th>input Tanggal</th>

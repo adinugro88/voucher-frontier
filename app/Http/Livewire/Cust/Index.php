@@ -23,19 +23,51 @@ class Index extends Component
 
     public function edits(int $custid)
     {
-        $cust = TokovoucCustomerher::find($custid);
+        $cust = Customer::find($custid);
         if($cust){
             $this->custid       = $cust->id;
             $this->nama         = $toko->nama;
-            $this->email    = $toko->email;
-            $this->notelpon       = $toko->notelpon;
-            $this->alamat     = $toko->alamat;
-            $this->noinvoice          = $toko->noinvoice;
+            $this->email        = $toko->email;
+            $this->notelpon     = $toko->notelpon;
+            $this->alamat       = $toko->alamat;
+            $this->noinvoice    = $toko->noinvoice;
            
         }else{
             return redirect()->to('/dashboard/admin/customerlist');
         }
     }
+
+    public function updatetoko()
+    {
+        $validatedData = $this->validate();
+
+        Customer::where('id',$this->custid)->update([
+            'kodetoko'         => $validatedData['kodetoko'],
+            'nama_toko'        => $validatedData['nama_toko'],
+            'alamat'           => $validatedData['alamat'],
+            'notelpon'         => $validatedData['notelpon'],
+            'Pic'              => $validatedData['Pic'],
+            'notelponpic'      => $validatedData['notelponpic'],
+        ]);
+        session()->flash('message','toko Updated ');
+        $this->resetinput();
+        $this->dispatchBrowserEvent('close-modal');
+    }
+
+    public function deleteStudent(int $tokoid)
+    {
+        $this->tokoid = $tokoid;
+    }
+
+    public function destroyStudent()
+    {
+        Customer::find($this->tokoid)->delete();
+        $this->dispatchBrowserEvent('close-modal');
+        session()->flash('message','Toko dihapus');
+    
+    }
+
+
     public function render()
     {
         

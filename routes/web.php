@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::get('/claimvoucher/{toko}',[CustomerController::class, 'show'])->name('customer');
 Route::post('/claimcustomer',[CustomerController::class, 'store'])->name('claimcustomer');
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
