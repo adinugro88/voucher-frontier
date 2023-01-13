@@ -87,11 +87,22 @@ class Index extends Component
 
     public function simpan()
     {
-        $validatedData = $this->validate();
-        Tokovoucher::create($validatedData);
-        session()->flash('message','Toko berhasil input');
-        $this->resetInput();
-        $this->dispatchBrowserEvent('close-modal');
+        $cekkode = Tokovoucher::where('kodetoko',$this->kodetoko);
+        //dd($cekkode);
+
+        if($cekkode->count()>0)
+        {
+            session()->flash('gagalinput','Kode Toko Sudah Harap Periksa Kembali kode Toko');
+        }
+        else{
+            $validatedData = $this->validate();
+            Tokovoucher::create($validatedData);
+            session()->flash('message','Toko berhasil input');
+            $this->resetInput();
+            $this->dispatchBrowserEvent('close-modal');
+        }
+
+      
     }
 
     public function render()

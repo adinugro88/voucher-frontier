@@ -17,38 +17,36 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label>Nama</label>
-                                        <input type="text" wire:model="kodetoko" class="form-control">
-                                        @error('kodetoko') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <input disabled type="text" wire:model="nama" class="form-control">
+                                        @error('nama') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label>Alamat</label>
-                                        <input type="text" wire:model="nama_toko" class="form-control">
-                                        @error('nama_toko') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <label>Email</label>
+                                        <input disabled type="text" wire:model="email" class="form-control">
+                                        @error('email') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label>Telepon</label>
-                                        <input type="text" wire:model="alamat" class="form-control">
-                                        @error('alamat') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <input disabled type="text" wire:model="notelpon" class="form-control">
+                                        @error('notelpon') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label>PIC</label>
-                                        <input type="text" wire:model="notelpon" class="form-control">
-                                        @error('notelpon') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <label>Alamat</label>
+                                        <input disabled type="text" wire:model="alamat" class="form-control">
+                                        @error('alamat') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
 
                                 </div>
                                 <div class="col-md-6">
                                 
                                     <div class="mb-3">
-                                        <label>Nama Bank</label>
-                                        <input type="text" wire:model="Pic" class="form-control">
-                                        @error('Pic') <span class="text-danger">{{ $message }}</span> @enderror
+                                        <label>No Invoice</label>
+                                        <input type="text" wire:model="noinvoice" class="form-control">
+                                        @error('noinvoice') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
-                                    <div class="mb-3">
-                                        <label>Nomor Bank</label>
-                                        <input type="text" wire:model="notelponpic" class="form-control">
-                                        @error('notelponpic') <span class="text-danger">{{ $message }}</span> @enderror
-                                    </div>
+
+                                    <b>Note : Data tervalidasi berdasarkan No Invoice dari program Elsa </b>
+                            
                                 </div>
                             </div>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

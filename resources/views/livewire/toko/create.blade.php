@@ -3,14 +3,19 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
+
                     <h4 class="modal-title">Input Toko Baru</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="resetinput()">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <form x-on:company-added.window="open = false" wire:submit.prevent="simpan">
-                     
+                        @if (session()->has('gagalinput'))
+                        <br>
+                        <p id="hideMe" class="alert alert-warning">{{ session('gagalinput') }}</p>
+                        @endif
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
@@ -42,7 +47,7 @@
                                         <input type="text" wire:model="Pic" class="form-control">
                                         @error('Pic') <span class="text-danger">{{ $message }}</span> @enderror
                                     </div>
-                                    
+
                                     <div class="mb-3">
                                         <label>no telpon PIC </label>
                                         <input type="text" wire:model="notelponpic" class="form-control">
@@ -50,9 +55,9 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                         
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal" wire:click="resetinput()">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
 
@@ -104,7 +109,7 @@
 
                                 </div>
                                 <div class="col-md-6">
-                                
+
                                     <div class="mb-3">
                                         <label>Nama Bank</label>
                                         <input type="text" wire:model="Pic" class="form-control">
@@ -133,22 +138,22 @@
     </div>
 
     <!-- Delete Student Modal -->
-    <div wire:ignore.self class="modal fade" id="modalhapus" tabindex="-1"
-        aria-labelledby="deleteStudentModalLabel" aria-hidden="true">
+    <div wire:ignore.self class="modal fade" id="modalhapus" tabindex="-1" aria-labelledby="deleteStudentModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deleteStudentModalLabel">Hapus Toko</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <form wire:submit.prevent="destroyStudent">
                     <div class="modal-body">
                         <b>hapus data secara permanen ?</b>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Yes! Delete</button>
                     </div>
                 </form>

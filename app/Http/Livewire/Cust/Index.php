@@ -11,6 +11,14 @@ class Index extends Component
     public $nama,$email, $notelpon,$alamat,$noinvoice,$toko_id,$feevoucher;
     public $search;
 
+    protected function rules()
+    {
+        return [
+            'noinvoice'      => 'required',
+        ];
+    }
+
+
     public function resetinput()
     {
         $this->nama="";
@@ -26,11 +34,11 @@ class Index extends Component
         $cust = Customer::find($custid);
         if($cust){
             $this->custid       = $cust->id;
-            $this->nama         = $toko->nama;
-            $this->email        = $toko->email;
-            $this->notelpon     = $toko->notelpon;
-            $this->alamat       = $toko->alamat;
-            $this->noinvoice    = $toko->noinvoice;
+            $this->nama         = $cust->nama;
+            $this->email        = $cust->email;
+            $this->notelpon     = $cust->notelpon;
+            $this->alamat       = $cust->alamat;
+            $this->noinvoice    = $cust->noinvoice;
            
         }else{
             return redirect()->to('/dashboard/admin/customerlist');
@@ -42,14 +50,10 @@ class Index extends Component
         $validatedData = $this->validate();
 
         Customer::where('id',$this->custid)->update([
-            'kodetoko'         => $validatedData['kodetoko'],
-            'nama_toko'        => $validatedData['nama_toko'],
-            'alamat'           => $validatedData['alamat'],
-            'notelpon'         => $validatedData['notelpon'],
-            'Pic'              => $validatedData['Pic'],
-            'notelponpic'      => $validatedData['notelponpic'],
+            'noinvoice'         => $validatedData['noinvoice'],
+            'feevoucher'        => 250000,
         ]);
-        session()->flash('message','toko Updated ');
+        session()->flash('message','Data telah tervalidasi silahkan lihat data Menu Laporan ');
         $this->resetinput();
         $this->dispatchBrowserEvent('close-modal');
     }
