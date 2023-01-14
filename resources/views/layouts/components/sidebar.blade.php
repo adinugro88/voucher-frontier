@@ -18,7 +18,12 @@ $links = [
         "icon" => "fas fa-book",
         "is_multi" => false
     ],
-
+    [
+        "href" => route('reporttoko'),
+        "text" => "Report Toko",
+        "icon" => "fa-solid fa-chart-simple",
+        "is_multi" => false
+    ],
     [
         "text" => "Kelola Akun",
         "icon" => "fas fa-users",

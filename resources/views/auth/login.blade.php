@@ -1,8 +1,7 @@
 @extends('layouts.base_admin.base_auth') @section('judul', 'Halaman Login') @section('content')
 <div class="login-box">
     <div class="login-logo">
-        <a href="#">
-            <b>Admin</b>LTE</a>
+            <b>Voucher Frontier</b>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -88,10 +87,10 @@
             <p class="mb-1">
                 <a href="{{ route('password.request') }}">Lupa password?</a>
             </p>
-            <p class="mb-0">
+            {{-- <p class="mb-0">
                 Belum mempunyai akun?
                 <a href="{{ route('register') }}" class="text-center">Register</a>
-            </p>
+            </p> --}}
         </div>
         <!-- /.login-card-body -->
     </div>
