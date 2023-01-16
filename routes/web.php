@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TokoController;
 use App\Http\Controllers\CustomerController;
-
+use App\Http\Controllers\TokoreportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +33,9 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/tokoqrcode/{param}',[TokoController::class, 'show'])->name('tokoshow');
     Route::get('/toko',[TokoController::class, 'index'])->name('toko');
     Route::get('/customerlist',[CustomerController::class, 'index'])->name('customerlist');
-
+    Route::get('/reporttoko',[TokoreportController::class, 'index'])->name('reporttoko');
+    Route::get('/report/date/',[TokoreportController::class, 'show'])->name('reportbydate');
+  
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', [HomeController::class, 'profile'])->name('profile');
         Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');

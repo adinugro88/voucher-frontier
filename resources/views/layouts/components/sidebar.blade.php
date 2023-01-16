@@ -21,7 +21,7 @@ $links = [
     [
         "href" => route('reporttoko'),
         "text" => "Report Toko",
-        "icon" => "fa-solid fa-chart-simple",
+        "icon" => "fas fa-window-restore",
         "is_multi" => false
     ],
     [

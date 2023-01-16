@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Customer;
+use App\Models\Tokovoucher;
 
 class TokoreportController extends Controller
 {
@@ -13,7 +15,10 @@ class TokoreportController extends Controller
      */
     public function index()
     {
-        //
+        $cust = Customer::orderby('id','DESC')->paginate(10);
+        $namatoko = Tokovoucher::latest()->get();
+
+        return view('tokoreport',['cust'=>$cust,'namatoko'=>$namatoko]);
     }
 
     /**
@@ -43,9 +48,17 @@ class TokoreportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $namatoko = Tokovoucher::where('id',$request->tokoid)->get();
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
+
+        $listcust = Customer::whereBetween('created_at',[$request->tglawal." 00:00:00",$request->tglakhir." 23:59:59"])->where('toko_id',$request->tokoid)->get();
+        // dd($listcust);
+        // $sum = $listcust->voucher->sum('fee_voucer');
+        // dd($sum);
+        return view('customerfilter',compact('listcust', 'namatoko','tglawal','tglakhir'));
     }
 
     /**
